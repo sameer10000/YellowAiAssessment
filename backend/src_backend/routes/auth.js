@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const { generateAccessToken, createRefreshTokenPlaintext, sha256 } = require('../utils/token');
 
 const COOKIE_NAME = 'refreshToken';
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'PRODUCTION';
 const COOKIE_OPTIONS = {
   httpOnly: true,
   secure: isProduction,
@@ -33,6 +33,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
+    console.log("hello")
   try {
     const { email, password } = req.body;
     if (!email || !password) return res.status(400).json({ error: 'email and password required' });
